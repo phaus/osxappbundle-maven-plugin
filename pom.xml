@@ -1,145 +1,146 @@
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.codehaus.mojo</groupId>
-		<artifactId>mojo</artifactId>
-		<version>17</version>
-	</parent>
+    <parent>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>mojo</artifactId>
+        <version>17</version>
+    </parent>
 
-	<artifactId>osxappbundle-maven-plugin</artifactId>
-	<groupId>net.frontlinesms.build</groupId>
-	<packaging>maven-plugin</packaging>
-	<version>1.0</version>
-	<licenses>
-		<license>
-			<name>The Apache Software License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-	<inceptionYear>2007</inceptionYear>
-	<name>Maven OS X Application Bundle Plugin</name>
-	<description>A Maven Plugin for generating Mac OS X Application Bundles of Java applications and packaging them as a DMG disk image.
-		This fork created specially for Frontline</description>
-	<url>http://mojo.codehaus.org/osxappbundle-maven-plugin/</url>
-	<prerequisites>
-		<maven>2.0.4</maven>
-	</prerequisites>
+    <artifactId>osxappbundle-maven-plugin</artifactId>
+    <groupId>org.codehaus.mojo</groupId>
+    <packaging>maven-plugin</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <inceptionYear>2007</inceptionYear>
+    <name>Maven OS X Application Bundle Plugin</name>
+    <description>A Maven Plugin for generating Mac OS X Application Bundles of Java applications and packaging them as a DMG disk image.
+		This fork created specially for Frontline
+    </description>
+    <url>http://mojo.codehaus.org/osxappbundle-maven-plugin/</url>
+    <prerequisites>
+        <maven>2.0.4</maven>
+    </prerequisites>
 
-	<scm>
-	</scm>
+    <scm>
+    </scm>
 
-	<developers>
-		<developer>
-			<id>eirik</id>
-			<name>Eirik Bjorsnos</name>
-			<email>eirbjo at gmail com</email>
-		</developer>
-	</developers>
+    <developers>
+        <developer>
+            <id>eirik</id>
+            <name>Eirik Bjorsnos</name>
+            <email>eirbjo at gmail com</email>
+        </developer>
+    </developers>
 
-	<contributors>
-		<contributor>
-			<name>Max Berger</name>
-			<email>max at berger dot name</email>
-		</contributor>
-	</contributors>
+    <contributors>
+        <contributor>
+            <name>Max Berger</name>
+            <email>max at berger dot name</email>
+        </contributor>
+    </contributors>
 
-	<distributionManagement>
-		<snapshotRepository>
-			<id>cleone.net.repo</id>
-			<name>Temporary FrontlineSMS repository on cleone.net</name>
-			<url>ftp://m2repo.cleone.net</url>
-		</snapshotRepository>
-		<repository>
-			<id>cleone.net.repo</id>
-			<name>Temporary FrontlineSMS repository on cleone.net</name>
-			<url>ftp://m2repo.cleone.net</url>
-		</repository>
-	</distributionManagement>
+    <distributionManagement>
+        <repository>
+            <id>maven.javastream.de</id>
+            <name>maven.javastream.de</name>
+            <url>scp://maven.javastream.de/home/javastream.de/www/maven</url>
+        </repository>
+        <snapshotRepository>
+            <id>maven.javastream.de</id>
+            <name>maven.javastream.de</name>
+            <url>scp://maven.javastream.de/home/javastream.de/www/maven</url>
+        </snapshotRepository>
+    </distributionManagement>
 	
-	<build>
-		<extensions>
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ftp</artifactId>
-				<version>1.0-beta-6</version>
-			</extension>
-		</extensions>
-	</build>
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>1.0-beta-7</version>
+            </extension>
+        </extensions>
+    </build>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.codehaus.plexus</groupId>
-			<artifactId>plexus-velocity</artifactId>
-			<version>1.1.3</version>
-		</dependency>
-		<dependency>
-			<groupId>velocity</groupId>
-			<artifactId>velocity-dep</artifactId>
-			<version>1.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-plugin-api</artifactId>
-			<version>2.0</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-artifact</artifactId>
-			<version>2.0</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-project</artifactId>
-			<version>2.0</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-model</artifactId>
-			<version>2.0</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.plexus</groupId>
-			<artifactId>plexus-archiver</artifactId>
-			<version>1.0-alpha-7</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.plexus</groupId>
-			<artifactId>plexus-utils</artifactId>
-			<version>1.0.4</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.2</version>
-			<scope>test</scope>
-		</dependency>
-  </dependencies>
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-changes-plugin</artifactId>
-        <configuration>
-          <issueLinkTemplate>
+    <dependencies>
+        <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-velocity</artifactId>
+            <version>1.1.3</version>
+        </dependency>
+        <dependency>
+            <groupId>velocity</groupId>
+            <artifactId>velocity-dep</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-artifact</artifactId>
+            <version>2.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-project</artifactId>
+            <version>2.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-model</artifactId>
+            <version>2.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-archiver</artifactId>
+            <version>1.0-alpha-7</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-utils</artifactId>
+            <version>1.0.4</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-changes-plugin</artifactId>
+                <configuration>
+                    <issueLinkTemplate>
             %URL%/%ISSUE%
-          </issueLinkTemplate>
-        </configuration>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>changes-report</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
-    </plugins>
-  </reporting>
+                    </issueLinkTemplate>
+                </configuration>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>changes-report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
