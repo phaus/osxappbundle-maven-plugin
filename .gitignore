@@ -7,3 +7,8 @@ target/
 .classpath
 
 bin/
+
+**/.svn
+
+.svn
+.DS_Store
