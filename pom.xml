@@ -45,6 +45,10 @@
             <name>Max Berger</name>
             <email>max at berger dot name</email>
         </contributor>
+        <contributor>
+            <name>Philipp Haussleiter</name>
+            <email>philipp at haussleiter dot de</email>
+        </contributor>
     </contributors>
 
     <distributionManagement>
@@ -61,6 +65,7 @@
     </distributionManagement>
 	
     <build>
+        <!-- for building with maven 3 -->
         <extensions>
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>

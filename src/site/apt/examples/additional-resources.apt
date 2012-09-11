@@ -2,7 +2,7 @@ Adding additional resources to your distribution
 
   Sometimes it's convenient to add files to your DMG and ZIP distribution alongside the Application Bundle.
 
-  Example shows how to add a README.txt files to your distribution by using the "additionalResources" configuration option.
+  Example shows how to add a README.txt files to your distribution by using the "additionalArchiveFiles" configuration option.
 
 
 
@@ -17,14 +17,14 @@ Adding additional resources to your distribution
                 <version>1.0-alpha-1</version>
                 <configuration>
                     <mainClass>com.example.Main</mainClass>
-                    <additionalResources>
+                    <additionalArchiveFiles>
                         <fileSet>
-                            <directory>${basedir}/src/main/app-resources</directory>
+                            <directory>${basedir}/src/main/resources</directory>
                             <includes>
                                 <include>README.txt</include>
                             </includes>
                         </fileSet>
-                    </additionalResources>
+                    </additionalArchiveFiles>
                 </configuration>
                 <executions>
                     <execution>
@@ -41,3 +41,62 @@ Adding additional resources to your distribution
    ...
  </project>
 +------------------------------------------+
+
+
+Adding non-Java Resources to your App Bundle
+
+  Sometimes you need to add more Resources to your App Bundle, then just Jars (e.g. NIB Files or native dylibs).
+  You can do that with using the following tags, "additionalResources" and "additionalBundledClasspathResources"
+
++------------------------------------------+
+ <project>
+    ...
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>osxappbundle-maven-plugin</artifactId>
+                <version>1.0-alpha-1</version>
+                <configuration>
+                    <mainClass>com.example.Main</mainClass>
+                    <!-- Adding additional Resources (like NIBs) -->
+                    <additionalResources>
+                        <fileSet>
+                            <directory>${basedir}/xcode</directory>
+                            <includes>
+                                <include>*.lproj/**</include>
+                            </includes>
+                        </fileSet>
+                    </additionalResources>
+                    <!-- Adding Native Java Libs -->
+                    <additionalBundledClasspathResources>
+                        <fileSet>
+                            <directory>${basedir}/src/main/lib</directory>
+                            <includes>
+                                <include>libjnidispatch.dylib</include>
+                            </includes>
+                        </fileSet>
+                        <fileSet>
+                            <directory>${basedir}/target</directory>
+                            <includes>
+                                <include>librococoa.dylib</include>
+                            </includes>
+                        </fileSet>
+                    </additionalBundledClasspathResources>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>bundle</goal>
+                        </goals>
+                    </execution>
+               </executions>
+           </plugin>
+           ...
+       </plugins>
+   <build>
+   ...
+ </project>
++------------------------------------------+
+

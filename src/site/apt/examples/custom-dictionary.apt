@@ -41,10 +41,12 @@ Using a custom Info.plist file
  Your custom dictionary may contain the following variables:
 
 ----------------------------------
-${bundleName}   (As defined in your POM. Default is the Maven name in your POM)
-${mainClass}   (Your mainClass defined in the plugin configuration of your POM)
-${iconFile}  (As defined in your POM. Defaults to a generic Application Icon)
-${classpath}   (An <array> containing all you classpath entries, used as the value of the ClassPath key)
+${bundleName}       (As defined in your POM. Default is the Maven name in your POM)
+${mainClass}        (Your mainClass defined in the plugin configuration of your POM)
+${iconFile}         (As defined in your POM. Defaults to a generic Application Icon)
+${classpath}        (An <array> containing all you classpath entries, used as the value of the ClassPath key)
+${workingDirectory} (The Default Working Dir of your java App.)
+${vmOptions}        (additional VMOptions)
 
 ----------------------------------
 

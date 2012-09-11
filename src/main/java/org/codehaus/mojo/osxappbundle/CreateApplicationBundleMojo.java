@@ -209,7 +209,7 @@ public class CreateApplicationBundleMojo extends AbstractMojo {
     /**
      * The path to the SetFile tool.
      */
-    private static final String SET_FILE_PATH = "/usr/bin/SetFile";
+    private static final String SET_FILE_PATH = "/Developer/Tools/SetFile";
 
     /**
      * Bundle project as a Mac OS X application bundle.
